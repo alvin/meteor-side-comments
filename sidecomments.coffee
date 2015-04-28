@@ -67,7 +67,7 @@ if Meteor.isClient
           the_path = window.location.pathname
 
           # decorate areas
-          ($ '#commentable-area p').each (i,v) ->
+          ($ '#commentable-area .comments-on').each (i,v) ->
             unless $(this).parents('.commentable-section').length > 0
               ($ this).addClass("commentable-section").attr "data-section-id", i
 
@@ -114,7 +114,7 @@ if Meteor.isClient
                     comment: 'Please login to post comments'
               tpl.side_comments.on 'commentDeleted', (comment) ->
                 if Meteor.user()
-                  SideComment.destroyAll comment.id
+                  SideComment.remove comment.id
                   tpl.side_comments.removeComment comment.sectionId, comment.id
             #/endunless
 
